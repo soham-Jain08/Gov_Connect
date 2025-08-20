@@ -1,0 +1,387 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GovConnect</title>
+  <link rel="icon" type="image/png" href="{% static 'logo.png' %}">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f8f9fb;
+    }
+
+    header {
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 50px;
+      border-bottom: 1px solid #d1d9e6;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      max-height: 200px;
+    }
+
+    .logo img {
+      width: 120px;
+      height: 50px;
+      margin-right: 150px;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 700;
+      color: #1a2a63;
+      font-size: 18px;
+    }
+
+.banner-container {
+  position: relative;
+}
+
+.banner-image {
+  width: 100%;
+  height: 300px;
+  display: block;
+}
+
+/* Floating about section */
+.about-card {
+  position: absolute;
+  bottom: -70px;  /* Controls how much it overlaps the banner */
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 30px 40px;
+  border-radius: 3px;
+  width: 90%;
+  z-index: 10;
+  border: 1px solid #d1d9e6;
+}
+
+
+    /* .banner {
+      width: 100%;
+      height: 400px;
+    }
+
+    .about-section {
+      background-color: white;
+      padding: 20px 40px;
+      margin-top: -5px;
+      border: 1px solid #ccc;
+    }
+
+    .about-section h2 {
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+
+    .about-section p {
+      line-height: 1.6;
+      font-size: 16px;
+      color: #333;
+    } */
+
+    /* .info-wrapper {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 70px 78px;
+    }
+
+    .stat-card {
+      background: #4d56a5;
+      color: white;
+      padding: 9px;
+      text-align: center;
+      width: 240px;
+      height: 70px;
+      border-radius: 4px;
+      margin-bottom: 15px;
+      margin-right: 20px;
+    }
+
+    .stat-card h3 {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .stat-card p {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .track-card {
+      background: white;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 4px;
+      width: 315px;
+      margin-left: auto;
+    }
+
+    .track-card h2 {
+      color: red;
+      margin-bottom: 10px;
+    }
+
+    .track-card label,
+    .track-card input,
+    .track-card button {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .track-card input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .track-card button {
+      background: #00a88e;
+      color: white;
+      border: none;
+      padding: 10px;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .contact-box {
+      background: white;
+      padding: 20px;
+      margin: 20px 40px;
+      border: 1px solid #ccc;
+    } */
+
+.main-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-top: 30px;
+  padding: 60px 77px 20px;
+}
+
+/* Left column with stats and contact */
+.left-col {
+  flex: 1;
+}
+
+/* Stats arranged in a row */
+.stats-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.stat-card {
+  background: #444aa1;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: bold;
+  flex: 1;
+}
+
+/* Contact box under stats */
+.contact-box {
+  border: 1px solid #ccc;
+  padding: 16px;
+  background: white;
+  border-radius: 6px;
+}
+
+/* Track box aligned to right */
+.track-box {
+  border: 1px solid #ccc;
+  padding: 16px;
+  background: white;
+  border-radius: 6px;
+  width: 260px;
+  height: 188px;
+  display: block;
+
+}
+
+.track-box h3 {
+  color: red;
+}
+
+.track-box input {
+  width: 100%;
+  padding: 8px;
+  margin: 10px 0;
+  border: 1px solid #000;
+  border-radius: 6px;
+}
+
+.track-box button {
+  background: #00a88e;
+      color: white;
+      border: none;
+      padding: 10px;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      text-align: center;
+
+}
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      background-color: #fff;
+      border-top: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="{% static 'logo.png' %}" alt="logo" />
+    </div>
+    <nav>
+      <a href="/dashboard/">Home</a>
+      <a href="/give-feedback/">Give Feedback</a>
+      <a href="/view-feedback/">View Feedback</a>
+    </nav>
+  </header>
+
+  <!-- <img class="banner" src="flag.png" alt="Indian Flag" />
+
+  <section class="about-section">
+    <h2>About GovConnect -</h2>
+    <p>GovConnect is a citizen-first digital platform designed to bridge the communication gap between the public and the government. It allows individuals to share feedback, suggestions, or concerns about public services—while enabling authorities to analyze this input and act on it more efficiently.</p>
+    <p>We aim to make governance more transparent, data-driven, and responsive by empowering every citizen to raise their voice and see real change.</p>
+  </section> -->
+
+  <div class="banner-container">
+  <img src="{% static 'flag.png' %}" class="banner-image" />
+
+  <div class="about-card">
+    <h2>About GovConnect -</h2>
+    <p>GovConnect is a citizen-first digital platform designed to bridge the communication gap between the public and the government. It allows individuals to share feedback, suggestions, or concerns about public services—while enabling authorities to analyze this input and act on it more efficiently.
+<br>We aim to make governance more transparent, data-driven, and responsive by empowering every citizen to raise their voice and see real change.</p>
+  </div>
+</div>
+
+<!-- Main flex row -->
+<div class="main-row">
+  <!-- Left column: stats + contact -->
+  <div class="left-col">
+    <div class="stats-row">
+      <div class="stat-card">Feedback Reported<br><strong>321</strong></div>
+      <div class="stat-card">Issues Solved<br><strong>291</strong></div>
+      <div class="stat-card">Departments Involved<br><strong>9</strong></div>
+    <div class="stat-card">Citizen's Satisfied<br><strong>283</strong></div>
+    </div>
+
+    <div class="contact-box">
+      <h3>Contact Us -</h3>
+      <p>email Id - govconnect@gmail.com</p>
+      <p>helpline number - 1722 80 9465</p>
+    </div>
+  </div>
+
+  <!-- Right column: track feedback -->
+  <div class="track-box">
+    <!-- <h3>Track Your Feedback -</h3>
+    <p>Enter your Tracking Id -</p>
+    <input type="text" placeholder="Tracking ID" />
+    <button>Check Status</button> -->
+  <form method="get" action="{% url 'track_feedback' %}">
+  <h3>Track Your Feedback -</h3>
+  <label for="trackingInput">Enter your Tracking ID:</label>
+  <input type="text" id="trackingInput" name="trackingId" placeholder="e.g. 12AB1234" required />
+  <button type="submit">Check Status</button>
+  </form>
+  </div>
+</div>
+
+<!-- Right column: track feedback (inside a form now) -->
+<!-- <div class="track-box">
+  <form onsubmit="event.preventDefault(); validateTrackingId();">
+    <h3>Track Your Feedback -</h3>
+    <label for="trackingInput">Enter your Tracking ID:</label>
+    <input type="text" id="trackingInput" name="trackingId" placeholder="e.g. 12AB1234" required />
+    <button type="submit">Check Status</button>
+  </form>
+</div> -->
+
+
+<!-- 
+  <section class="info-wrapper">
+    <div class="stat-card">
+      <h3>Feedback Reported</h3>
+      <p>321</p>
+    </div>
+    <div class="stat-card">
+      <h3>Issues Solved</h3>
+      <p>291</p>
+    </div>
+    <div class="stat-card">
+      <h3>Departments Involved</h3>
+      <p>9</p>
+    </div>
+    <div class="stat-card">
+      <h3>Departments Involved</h3>
+      <p>9</p>
+    </div>
+    <div class="contact-box">
+    <h3>Contact Us -</h3>
+    <p>email Id - govconnect@gmail.com<br />helpline number - 1722 80 9465</p>
+  </div>
+    <div class="track-card">
+      <h2>Track Your Feedback -</h2>
+      <label>Enter your Tracking Id -</label>
+      <input type="text" placeholder="" />
+      <button>Check Status</button>
+    </div>
+      
+  </section>
+
+  <div class="contact-box">
+    <h3>Contact Us -</h3>
+    <p>email Id - govconnect@gmail.com<br />helpline number - 1722 80 9465</p>
+  </div> -->
+
+<script>
+  function validateTrackingId() {
+    const input = document.getElementById('trackingInput').value.trim();
+    const pattern = /^[0-9]{2}[A-Z]{2}[0-9]{4}$/;
+
+    if (pattern.test(input)) {
+      alert("Tracking ID is valid. Checking status...");
+      // You can redirect or perform fetch here
+    } else {
+      alert("Invalid Tracking ID format!\nFormat must be: 2 digits + 2 letters + 4 digits (e.g., 12AB1234)");
+    }
+  }
+</script>
+
+
+  <footer>
+    Margadarshan Sohan Kumar Sirji...
+  </footer>
+</body>
+</html>
+
+
+

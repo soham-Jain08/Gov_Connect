@@ -1,0 +1,323 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feedback Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f7fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 50px;
+      border-bottom: 1px solid #d1d9e6;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      max-height: 200px;
+    }
+
+    .logo img {
+      width: 120px;
+      height: 50px;
+      margin-right: 150px;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 700;
+      color: #1a2a63;
+      font-size: 18px;
+    }
+
+.banner-container {
+  position: relative;
+}
+
+.banner-image {
+  width: 100%;
+  height: 300px;
+  display: block;
+}
+
+/* Floating about section */
+.about-card {
+  position: absolute;
+  bottom: -70px;  /* Controls how much it overlaps the banner */
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 10px 40px;
+  border-radius: 3px;
+  width: 90%;
+  z-index: 10;
+  border: 1px solid #d1d9e6;
+  border-radius: 8px;
+}
+
+    .filter-section {
+      background-color: #fff;
+      margin: 20px 40px;
+      padding: 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+    }
+
+    select, input[type="text"] {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      appearance: none;
+      background-color: #fff;
+      background-image: url("data:image/svg+xml,%3Csvg fill='%23444' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      background-size: 16px;
+    }
+
+    select:focus, input:focus {
+      outline: none;
+      border-color: #4d5dab;
+    }
+
+    .apply-btn {
+      background-color: #4d5dab;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .feedback-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px 40px;
+      margin-top: 60px;
+    }
+
+    .feedback-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .quote-mark {
+      font-size: 20px;
+      color: #4d5dab;
+      font-weight: bold;
+    }
+
+    .reactions {
+      margin-top: 15px;
+      font-size: 22px;
+    }
+
+    .emoji {
+      cursor: pointer;
+      font-size: 22px;
+      margin-right: 10px;
+      transition: transform 0.2s, background-color 0.3s;
+      padding: 4px 6px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+
+    .emoji:hover {
+      background-color: #e0e0e0;
+      transform: scale(1.2);
+    }
+
+    .emoji.selected {
+      background-color: #4d5dab;
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      color: #777;
+      border-top: 1px solid #ccc;
+      margin-top: 20px;
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="{% static 'logo.png' %}" alt="logo" />
+    </div>
+    <nav>
+      <a href="/dashboard/">Home</a>
+      <a href="/give-feedback/">Give Feedback</a>
+      <a href="/view-feedback/">View Feedback</a>
+    </nav>
+  </header>
+
+<div class="banner-container">
+  <img src="{% static 'image2.png' %}" class="banner-image" />
+
+  <div class="about-card">
+    <h2>View Feedbacks -</h2>
+      <section class="filter-section">
+    <div class="filters">
+      <select>
+        <option value="" disabled selected>Select Related Department</option>
+        <option>Ministry of Education</option>
+        <option>Ministry of Power</option>
+        <option>Ministry of Railways</option>
+        <option>Ministry of Roads and Highways</option>
+        <option>Ministry of Women and Child Development</option>
+        <option>Ministry of Water Resources</option>
+      </select>
+
+      <select>
+        <option value="" disabled selected>Select State / UT</option>
+        <option>Andhra Pradesh</option>
+        <option>Arunachal Pradesh</option>
+        <option>Assam</option>
+        <option>Bihar</option>
+        <option>Chhattisgarh</option>
+        <option>Goa</option>
+        <option>Gujarat</option>
+        <option>Haryana</option>
+        <option>Himachal Pradesh</option>
+        <option>Jharkhand</option>
+        <option>Karnataka</option>
+        <option>Kerala</option>
+        <option>Madhya Pradesh</option>
+        <option>Maharashtra</option>
+        <option>Manipur</option>
+        <option>Meghalaya</option>
+        <option>Mizoram</option>
+        <option>Nagaland</option>
+        <option>Odisha</option>
+        <option>Punjab</option>
+        <option>Rajasthan</option>
+        <option>Sikkim</option>
+        <option>Tamil Nadu</option>
+        <option>Telangana</option>
+        <option>Tripura</option>
+        <option>Uttar Pradesh</option>
+        <option>Uttarakhand</option>
+        <option>West Bengal</option>
+        <option>Andaman and Nicobar Islands</option>
+        <option>Chandigarh</option>
+        <option>Dadra and Nagar Haveli and Daman and Diu</option>
+        <option>Delhi</option>
+        <option>Jammu and Kashmir</option>
+        <option>Ladakh</option>
+        <option>Lakshadweep</option>
+        <option>Puducherry</option>
+      </select>
+
+      <input type="text" placeholder="Enter location..." />
+    </div>
+
+    <button class="apply-btn">Apply Filters</button>
+  </section>
+  </div>
+</div>
+
+  <section class="feedback-grid">
+    <div class="feedback-card">
+      <div class="quote-mark">“ Clean streets now. Thank you! ”</div>
+      <div class="reactions">
+        <span class="emoji">❤️</span>
+        <span class="emoji">😃</span>
+        <span class="emoji">😡</span>
+        <span class="emoji">😢</span>
+      </div>
+    </div>
+    <div class="feedback-card">
+      <div class="quote-mark">“ Water supply is better than before. ”</div>
+      <div class="reactions">
+        <span class="emoji">❤️</span>
+        <span class="emoji">😃</span>
+        <span class="emoji">😡</span>
+        <span class="emoji">😢</span>
+      </div>
+    </div>
+    <div class="feedback-card">
+      <div class="quote-mark">“ Transport delays are reduced. ”</div>
+      <div class="reactions">
+        <span class="emoji">❤️</span>
+        <span class="emoji">😃</span>
+        <span class="emoji">😡</span>
+        <span class="emoji">😢</span>
+      </div>
+    </div>
+    <div class="feedback-card">
+      <div class="quote-mark">“ Transport delays are reduced. ”</div>
+      <div class="reactions">
+        <span class="emoji">❤️</span>
+        <span class="emoji">😃</span>
+        <span class="emoji">😡</span>
+        <span class="emoji">😢</span>
+      </div>
+    </div>
+    <div class="feedback-card">
+      <div class="quote-mark">“ Transport delays are reduced. ”</div>
+      <div class="reactions">
+        <span class="emoji">❤️</span>
+        <span class="emoji">😃</span>
+        <span class="emoji">😡</span>
+        <span class="emoji">😢</span>
+      </div>
+    </div>
+    
+  </section>
+
+  <footer>
+    Margadarshan by Sohan Kumar Sirji...
+  </footer>
+
+  <script>
+    document.querySelectorAll('.reactions').forEach(card => {
+      card.querySelectorAll('.emoji').forEach(emoji => {
+        emoji.addEventListener('click', () => {
+          // Unselect all emojis in the card
+          card.querySelectorAll('.emoji').forEach(e => e.classList.remove('selected'));
+          // Select clicked emoji
+          emoji.classList.add('selected');
+          // Optional: console log
+          console.log('Selected emoji:', emoji.textContent);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

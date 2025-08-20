@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - GovConnect</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+    }
+
+    .login-container {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-box {
+      display: flex;
+      border: 2px solid #2e3b85;
+      border-radius: 8px;
+      padding: 40px;
+      background-color: #fff;
+      max-width: 700px;
+      width: 90%;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .login-left {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+    }
+
+    .login-left h2 {
+      font-size: 45px;
+      color: #1a237e;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .login-left label {
+      font-size: 16px;
+      margin-bottom: 5px;
+      color: #333;
+    }
+
+    .login-left input {
+      padding: 8px 20px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+      width: 90%;
+    }
+
+    .login-left button {
+      padding: 10px 30px;
+      background-color: #23a395;
+      border: none;
+      color: #fff;
+      border-radius: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      width: fit-content;
+    }
+
+    .login-right {
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .login-right img {
+      max-width: 80%;
+      height: auto;
+    }
+
+    .role-note {
+      font-size: 20px;
+      color: #1a237e;
+      margin-top: 30px;
+      font-weight: bold;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-box">
+      <div class="login-left">
+        <h2>Login</h2>
+        {% if messages %}
+          {% for message in messages %}
+            <div class="error">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+        <form id="loginForm" method="POST" action="{% url 'login' %}">
+          {% csrf_token %}
+          <label>Username -</label>
+          <input type="text" id="username" name="username" placeholder="Enter username" required />
+
+          <label>Password -</label>
+          <input type="password" id="password" name="password" placeholder="Enter password" required />
+
+          <button type="submit">Login</button>
+        </form>
+      </div>
+      <div class="login-right">
+        <img src="{% static 'logo.png' %}" alt="GovConnect Logo" />
+      </div>
+    </div>
+  </div>
+</body>
+</html>

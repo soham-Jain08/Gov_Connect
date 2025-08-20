@@ -1,0 +1,270 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GovConnect - Give Feedback</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+    }
+
+    /* .navbar {
+      background-color: white;
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      justify-content: space-between;
+    }
+
+    .navbar img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .navbar .nav-links a {
+      margin: 0 10px;
+      color: #0c1a60;
+      text-decoration: none;
+      font-weight: bold;
+    } */
+
+    header {
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 50px;
+      border-bottom: 1px solid #d1d9e6;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      max-height: 200px;
+    }
+
+    .logo img {
+      width: 120px;
+      height: 50px;
+      margin-right: 150px;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 700;
+      color: #1a2a63;
+      font-size: 18px;
+    }
+
+
+    .header {
+      display: flex;
+      background-color: #444ca0;
+      color: white;
+      padding: 40px 60px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-text h1 {
+      margin: 0;
+      font-size: 35px;
+    }
+
+    .header-text p {
+      margin: 15px 0;
+      font-size: 20px;
+    }
+
+    .header-text ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .header img{
+      position: absolute;
+      bottom: -10px;  /* Controls how much it overlaps the banner */
+      left: 85%;
+      transform: translateX(-50%);
+      padding: 423px 40px;
+      z-index: 10;
+      height: 250px;
+      width: 200px;
+    }
+
+    .feedback-section {
+      background-color: white;
+      margin: 20px;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    .feedback-section h3 {
+      margin-top: 40px;
+      color: teal;
+      font-size: 35px;
+      text-align: center;
+    }
+
+    .feedback-section h4{
+        margin-top: 30px;
+        color: red;
+        font-size: 32px;
+        text-align: center;
+    }
+
+    .feedback-section p{
+        margin-top: 10px;
+        color: #212121;
+        font-size: 28px;
+        text-align: center;
+    }
+
+    /* .feedback-section input,
+    .feedback-section textarea {
+      width: 98.5%;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #999;
+      display: flex;
+
+    }
+
+    .feedback-section .input-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .feedback-section .input-row input {
+      flex: 1;
+    }
+ */
+    .feedback-section .buttons {
+      margin-top: 10px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .feedback-section button {
+      padding: 10px 50px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-color: #979797;
+      border-style: solid;
+      font-size: 15px;
+      margin-bottom: 10px;
+      text-decoration: none;
+    }
+
+    .feedback-section .reset-btn {
+      background-color: #ddd;
+      color: #212121;
+
+    }
+
+    .feedback-section .submit-btn {
+      background-color: #ddd;
+      color: #212121;
+    }
+
+    /* footer {
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+      color: #333;
+    } */
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      background-color: #fff;
+      border-top: 1px solid #ccc;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .header img {
+        margin-top: 20px;
+        height: 120px;
+      }
+
+      .feedback-section .input-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar
+  <div class="navbar">
+    <div style="display: flex; align-items: center;">
+      <img src="logo.png" alt="GovConnect Logo" />
+    </div>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Give Feedback</a>
+      <a href="#">View Feedback</a>
+    </div>
+  </div> -->
+
+  <header>
+    <div class="logo">
+      <img src="{% static 'logo.png' %}" alt="logo" />
+    </div>
+    <nav>
+      <a href="/dashboard/">Home</a>
+      <a href="/give-feedback/">Give Feedback</a>
+      <a href="/view-feedback/">View Feedback</a>
+    </nav>
+  </header>
+
+  <!-- Header Banner -->
+  <div class="header">
+    <div class="header-text">
+      <h1>Thank you for your valuable feedback!</h1>
+      <p>Your input has been recorded and forwarded to the relevant department for review.
+        <br>You can use your Tracking ID to check the status of your feedback at any time.</p>
+    </div>
+    <img src="{% static 'neta.png' %}" alt="Namaste Icon">
+  </div>
+
+  <!-- Feedback Form -->
+  <div class="feedback-section">
+    <h3>Feedback submitted successfully!!!</h3>
+    <h4>Tracking Id - {{ feedback_id }}</h4>
+    <p>Please note your Tracking ID. <br>You can use this ID to track the status of your feedback.</p>
+
+    <div class="buttons">
+      <!-- <a href="/dashboard/"><button class="reset-btn">Back to home</button></a>
+      <a href="/give-feedback/"><button class="reset-btn">Write another feedback</button></a> -->
+      <button class="reset-btn" onclick="window.location.href='/dashboard/'">Back to home</button>
+      <button class="reset-btn" onclick="window.location.href='/give-feedback/'">Write another feedback</button>
+
+    </div>
+  </div>
+
+  <footer>
+    Margadarshan Sohan Kumar Sirji...
+  </footer>
+
+</body>
+</html>

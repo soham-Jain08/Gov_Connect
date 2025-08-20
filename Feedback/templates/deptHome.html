@@ -1,0 +1,353 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Department Representative Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f7fa;
+      color: #1a2a63;
+    }
+
+    header {
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 50px;
+      border-bottom: 1px solid #d1d9e6;
+    }
+
+    .logo img {
+      width: 120px;
+      height: 50px;
+    }
+
+    .dashboard {
+      padding: 10px 40px;
+    }
+
+    .dashboard h2 {
+      margin-bottom: 20px;
+    }
+
+    nav h2 {
+      margin: 0;
+    }
+
+    .logout-btn {
+      background-color: #f44336;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .summary-cards {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .card {
+      background: #2c3e91;
+      color: white;
+      padding: 1px 0;
+      border-radius: 10px;
+      height: 65px;
+      text-align: center;
+      flex: 1;
+    }
+
+    .card h3 {
+      font-size: 16px;
+      margin-top: 6px;
+    }
+
+    .card p {
+      font-size: 16px;
+      margin-top: -10px;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .filters select, .filters button {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-weight: bold;
+    }
+
+    .filters button {
+      background-color: #00a87e;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .feedback-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 15px;
+    }
+
+    .subject {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: #333;
+      cursor: pointer;
+    }
+
+    .feedback-detail {
+      margin-top: 10px;
+      display: none;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .Complaint {
+      background: #f44336;
+      color: white;
+    }
+
+    .Suggestion {
+      background: #4caf50;
+      color: white;
+    }
+
+    .Appreciation {
+      background: #2196f3;
+      color: white;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    .tag-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .tag-btn {
+      padding: 8px 14px;
+      background: #eee;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .tag-btn.selected {
+      background-color: #4d56a5;
+      color: white;
+    }
+
+    .approve-reject {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .approve-btn {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .reply-box {
+      margin-top: 15px;
+      display: none;
+      width: 100%;
+    }
+
+    .reply-box textarea {
+      width: 90%;
+      height: 100px;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      resize: none;
+      font-family: inherit;
+      margin-bottom: 10px;
+    }
+
+    .reply-box button {
+      background-color: #4d5dab;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      float: right;
+      cursor: pointer;
+      margin-top: 90px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="{% static 'logo.png' %}" alt="logo" />
+    </div>
+    <nav>
+      <h2>{{ dept_name }}</h2>
+    </nav>
+    <div>
+      <a href="/logout/" class="logout-btn">Logout</a>
+    </div>
+  </header>
+
+  <section class="dashboard">
+    <h2>Welcome, {{ name }}</h2>
+
+    <div class="summary-cards">
+      <div class="card"><h3>Feedbacks Received</h3><p>86</p></div>
+      <div class="card"><h3>Replied</h3><p>37</p></div>
+      <div class="card"><h3>Unanswered</h3><p>49</p></div>
+      <div class="card"><h3>Suggestions</h3><p>12</p></div>
+      <div class="card"><h3>Appreciations</h3><p>8</p></div>
+      <div class="card"><h3>Complaints</h3><p>26</p></div>
+    </div>
+
+    <div class="filters">
+      <select><option>Suggestions</option><option>Complaints</option><option>Appreciations</option></select>
+      <select><option>Select Date</option><option>Today</option><option>Last 7 Days</option><option>Last 30 Days</option></select>
+      <select><option value="" disabled selected>Select State / UT</option>
+        <option>Andhra Pradesh</option>
+        <option>Arunachal Pradesh</option>
+        <option>Assam</option>
+        <option>Bihar</option>
+        <option>Chhattisgarh</option>
+        <option>Goa</option>
+        <option>Gujarat</option>
+        <option>Haryana</option>
+        <option>Himachal Pradesh</option>
+        <option>Jharkhand</option>
+        <option>Karnataka</option>
+        <option>Kerala</option>
+        <option>Madhya Pradesh</option>
+        <option>Maharashtra</option>
+        <option>Manipur</option>
+        <option>Meghalaya</option>
+        <option>Mizoram</option>
+        <option>Nagaland</option>
+        <option>Odisha</option>
+        <option>Punjab</option>
+        <option>Rajasthan</option>
+        <option>Sikkim</option>
+        <option>Tamil Nadu</option>
+        <option>Telangana</option>
+        <option>Tripura</option>
+        <option>Uttar Pradesh</option>
+        <option>Uttarakhand</option>
+        <option>West Bengal</option>
+        <option>Andaman and Nicobar Islands</option>
+        <option>Chandigarh</option>
+        <option>Dadra and Nagar Haveli and Daman and Diu</option>
+        <option>Delhi</option>
+        <option>Jammu and Kashmir</option>
+        <option>Ladakh</option>
+        <option>Lakshadweep</option>
+        <option>Puducherry</option></select>
+      <button>Apply Filters</button>
+    </div>
+
+    <div class="feedback-card">
+      <div class="tag Complaint">Complaint</div>
+      <div class="subject" onclick="toggleDetail(this)">Subject: Potholes not repaired in Bangalore</div>
+      <div class="feedback-detail">
+        <p>The main road in Koramangala has potholes since 12 months and still not fixed.</p>
+        <p><strong>Department:</strong> Transport</p>
+        <p><strong>State:</strong> Karnataka</p>
+        <p><strong>Location:</strong> Koramangala, Bangalore</p>
+        <p><strong>Attachment:</strong> <a href="#">View</a></p>
+
+        <div class="btn-group">
+          <div class="tag-buttons">
+            <button class="tag-btn">Investigation Started</button>
+            <button class="tag-btn">Appointment of Authorities</button>
+            <button class="tag-btn">Proposal Passed</button>
+            <button class="tag-btn">Work Started</button>
+            <button class="tag-btn">Completed</button>
+          </div>
+          <div class="approve-reject">
+            <button class="approve-btn" onclick="showReplyBox(this)">Reply</button>
+          </div>
+        </div>
+
+        <div class="reply-box">
+          <textarea placeholder="Write your reply..."></textarea>
+          <button onclick="sendReply(this)">Send</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function toggleDetail(element) {
+      const detail = element.nextElementSibling;
+      detail.style.display = detail.style.display === 'block' ? 'none' : 'block';
+    }
+
+    document.querySelectorAll('.tag-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const group = button.parentElement.querySelectorAll('.tag-btn');
+        group.forEach(b => b.classList.remove('selected'));
+        button.classList.add('selected');
+      });
+    });
+
+    function showReplyBox(button) {
+      const replyBox = button.closest('.feedback-detail').querySelector('.reply-box');
+      replyBox.style.display = replyBox.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function sendReply(btn) {
+      const textarea = btn.previousElementSibling;
+      const message = textarea.value.trim();
+      if (message) {
+        alert("Reply Sent");
+        textarea.value = '';
+      } else {
+        alert("Please write a message before sending.");
+      }
+    }
+  </script>
+</body>
+</html>
+
